@@ -1,21 +1,5 @@
 # PhantomJS - ScreenShot
 
-**TODO**: create screenshot.js based on take_resize.js
-
-> phantomjs screenshot.js SOURCE OUTPUT --screenshot 1024x768x0 --resize 250x200 --delay 5000
-
---
-
-> **Usage:**
->
-> phantomjs take_resize.js SOURCE OUTPUT _[OPTION1 OPTION2 OPTION3]_
->
-> * **SOURCE**  : url or html file path
-> * **OUTPUT**  : image.png or --base64 (output base64 on console)
-> * **OPTION1** : page dimensions to take screenshot _[ default: 1024x768x0 >> pageWidth x pageHeight x pageTop ]_ or **OPTION3** flag
-> * **OPTION2** : resize image to _[ default: 250x200 >> imageWidth x imageHeight ]_ or **OPTION3** flag
-> * **OPTION3** : --delay=NUMBER time (ms) to take screenshot _[ default: 300 ms ]_
-
 * [PhantomJS Screen Capture](http://phantomjs.org/screen-capture.html)
 
   * to work with web fonts
@@ -26,51 +10,80 @@
     > 
     > * [[GitHub] eugene1g / phantomjs - PhantomJS 2.0 bin](https://github.com/eugene1g/phantomjs/releases/tag/2.0.0-bin) - works with webfonts [ PhantomJS 2.0.0 binaries for OSX and linux (temp, until upstream is patched) ]
 
+## Usage
 
-## commands
+```
+Usage: phantomjs screenshot.js <command> [options]
+
+Commands:
+  source    URL or html file path
+  dest      [path/]filename, if not defined will output base64 (PNG)
+
+Options:
+  --screenshot  page width x height x top ( default: 1024x768x0 )
+  --resize  to width x height ( default: 250x200 )
+    * do not resize image if not defined
+  --delay   wait miliseconds before take screenshot ( default: 300 )
+  --debug
+    * if defined will print debug messages
+
+Exemple:
+  phantomjs phantomjs/screenshot.js http://page.html
+  phantomjs phantomjs/screenshot.js http://page.html screenshot/output.png
+  phantomjs phantomjs/screenshot.js http://page.html screenshot/output.png --resize
+```
+
+* proxy params
+
+```
+--proxy=ip_host:port --proxy-auth=user:pass
+```
+
+
+## commands examples
 
 ### from file
 
 ```bash
-$ phantomjs take_resize.js ../from_file/html/basic.html thumbnail/basic.png
+$ phantomjs screenshot.js ../from_file/html/basic.html thumbnail/basic.png
 
-$ phantomjs take_resize.js ../from_file/html/basic.html --base64
+$ phantomjs screenshot.js ../from_file/html/basic.html
 
-$ phantomjs take_resize.js ../from_file/html/bootstrap_example.html thumbnail/bootstrap_example.png
+$ phantomjs screenshot.js ../from_file/html/bootstrap_example.html thumbnail/bootstrap_example.png
 
-$ phantomjs take_resize.js ../from_file/html/bootstrap_example.html --base64
+$ phantomjs screenshot.js ../from_file/html/bootstrap_example.html
 ```
 
 ### from url
 
 ```bash
-$ phantomjs take_resize.js http://github.com/erkobridee thumbnail/github_erkobridee.png --delay=1000
+$ phantomjs screenshot.js http://github.com/erkobridee thumbnail/github_erkobridee.png --delay=1000
 
-$ phantomjs take_resize.js http://github.com/erkobridee thumbnail/github_erkobridee.png
+$ phantomjs screenshot.js http://github.com/erkobridee thumbnail/github_erkobridee.png
 
-$ phantomjs take_resize.js http://github.com/erkobridee --base64
+$ phantomjs screenshot.js http://github.com/erkobridee
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js http://github.com/erkobridee thumbnail/github_erkobridee.png --delay=1000
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js http://github.com/erkobridee thumbnail/github_erkobridee.png --delay=1000
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js http://github.com/erkobridee thumbnail/github_erkobridee.png
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js http://github.com/erkobridee thumbnail/github_erkobridee.png
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js http://github.com/erkobridee --base64
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js http://github.com/erkobridee
 ```
 
 --
 
 ```bash
-$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250 --delay=2000
+$ phantomjs screenshot.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250 --delay=2000
 
-$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250
+$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
 
-$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button --base64 1024x700 300x250
+$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250 --delay=2000
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250 --delay=2000
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button --base64 1024x700 300x250
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
 ```
 
 ## Links
