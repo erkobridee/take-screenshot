@@ -75,15 +75,15 @@ $ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js http://git
 ```bash
 $ phantomjs screenshot.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png 1024x700 300x250 --delay=2000
 
-$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
+$ phantomjs screenshot.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
 
-$ phantomjs take_resize.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
+$ phantomjs screenshot.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250 --delay=2000
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250 --delay=2000
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js https://material.angularjs.org/#/demo/material.components.button thumbnail/button.png --screenshot 1024x700 --resize 300x250
 
-$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass take_resize.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
+$ phantomjs --proxy=ip_host:port --proxy-auth=user:pass screenshot.js https://material.angularjs.org/#/demo/material.components.button --screenshot 1024x700 --resize 300x250
 ```
 
 ## Links
