@@ -1,12 +1,7 @@
-module.exports = (function() {
+var is = require('./is'),
+    valueType = require('./valueType');
 
-  var regexp = {
-    isFlag: /^-|--/,
-    hasEquals: /=/,
-    isNumber: /^\s*(\+|-)?((\d+(\.\d+)?)|(\.\d+))\s*$/,
-    isBool: /^true|false$/,
-    isTrue: /^true$/,
-  };
+module.exports = (function() {
 
   var system = require('system'),
       sysargs = system.args;
@@ -26,19 +21,19 @@ module.exports = (function() {
     if( sysargs.length === 0 ) return;
 
     var arg = sysargs.shift();
-    if( !isFlag( arg ) ) {
+    if( !is.flag( arg ) ) {
       argv._.push( arg );
       processArgs( argv, sysargs );
     } else {
       arg = arg.replace(/-/g, '');
-      if( flagHasOwnValue( arg ) ) {
+      if( is.flag.hasEquals( arg ) ) {
         var parts = arg.split('=');
         appendValue( argv, parts[0], parts[1] );
         processArgs( argv, sysargs );
       } else {
         if( sysargs.length > 0 ) {
           var nextarg = sysargs.shift();
-          if( isFlag( nextarg ) ) {
+          if( is.flag( nextarg ) ) {
             appendValue( argv, arg, true );
             sysargs.unshift( nextarg );
             processArgs( argv, sysargs );
@@ -59,37 +54,14 @@ module.exports = (function() {
 
   function appendValue( obj, key, value ) {
     if( obj[key] ) {
-      if( Array.isArray( obj[key] ) ) {
-        obj[key].push( checkValueType( value ) );
+      if( is.array( obj[key] ) ) {
+        obj[key].push( valueType( value ) );
       } else {
-        obj[key] = [ obj[key], checkValueType( value ) ];
+        obj[key] = [ obj[key], valueType( value ) ];
       }
     } else {
-      obj[key] = checkValueType( value );
+      obj[key] = valueType( value );
     }
-  }
-
-  //---
-
-  function isString(value) {return typeof value === 'string';}
-
-  function isFlag( value ) {
-    return regexp.isFlag.test( value );
-  }
-
-  function flagHasOwnValue( value ) {
-    return regexp.hasEquals.test( value );
-  }
-
-  function checkValueType( value ) {
-    if( !isString( value ) ) return value;
-
-    if( regexp.isNumber.test( value ) ) {
-      return Number( value );
-    } else if( regexp.isBool.test( value ) ) {
-      return regexp.isTrue.test( value );
-    }
-    return value;
   }
 
   //---
