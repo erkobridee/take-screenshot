@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Take ScreenShot</title>
+</head>
+<body>
+
+<p>ScreenShot service powered by <a href="https://nodejs.org/" target="_blank">Nodejs</a>, <a href="http://hapijs.com/" target="_blank">Hapi.js</a> and <a href="http://phantomjs.org/" target="_blank">PhantomJS</a></p>
+
+<br>
+<b>/api/screenshots [POST]</b>
+<pre>request:
+{
+  url: String,
+  screenshot: String,
+  resize: String,
+  delay: Number
+}
+
+> url        : screenshot target url
+> screenshot : screenshot width x height x top ( default: 1024x768x0 )
+> resize     : resize screenshot image to width x height ( default: 250x200 )
+> delay      : time in miliseconds to take screenshot
+
+
+response:
+{
+  id: String
+}
+
+> id : screenshot image id</pre>
+
+<br>
+<b>/api/screenshots/{id} [GET]</b>
+<pre>> id : screenshot image id
+
+return screenshot image file</pre>
+
+</body>
+</html>
