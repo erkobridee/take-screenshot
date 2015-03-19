@@ -1,0 +1,26 @@
+{
+  "name": "take-screenshot",
+  "version": "0.1.0",
+  "description": "phantomjs service to take screenshot from URL (with resize image support) ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "outdated": "npm outdated --depth=0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erkobridee/take-screenshot.git"
+  },
+  "keywords": [
+    "phantomjs",
+    "screenshot",
+    "api",
+    "service"
+  ],
+  "author": "Erko Bridee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/erkobridee/take-screenshot/issues"
+  },
+  "homepage": "https://github.com/erkobridee/take-screenshot"
+}
