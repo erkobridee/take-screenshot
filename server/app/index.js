@@ -1,17 +1,10 @@
-var pathPrefix = require('./path_prefix');
+module.exports = function( server ) {
 
-module.exports = function( options ) {
+  require('./main')( server );
 
-  require('./main')( options );
+  $srv.pathPrefix( 'api', server, function( server, done ) {
 
-  pathPrefix( 'api', options.server, function( server, done ) {
-
-    var localOptions = {
-      server: server,
-      config: options.config
-    };
-
-    require('./screenshots')(localOptions);
+    require('./screenshots')( server );
 
     done();
   } );

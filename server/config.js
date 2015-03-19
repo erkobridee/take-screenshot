@@ -1,36 +1,30 @@
-var args = require('yargs').argv,
-    path = require('path'),
-    is   = require('../phantomjs/helpers/is');
+var $ = require('./helpers/$');
 
 module.exports = (function() {
 
   var config = {};
 
-  // config.args = args;
-
   config.flags = {
-    proxy: !!args.proxy
+    proxy: !!$.args.proxy
   };
-
-  config.rootPath = path.dirname(require.main.filename);
 
   //---
   config.phantomjs = {
-    root: path.resolve( config.rootPath, '..', 'phantomjs' ),
-    screenshot: path.resolve( config.rootPath, '..', 'phantomjs', 'screenshot.js' )
+    root       : $.path.resolve( $.rootPath, 'phantomjs' ),
+    screenshot : $.path.resolve( $.rootPath, 'phantomjs', 'screenshot.js' )
   };
 
   if( config.flags.proxy ) {
 
     config.phantomjs.proxy = {
       server : (
-        ( is.string( args.proxy ) ) ?
-          args.proxy :
+        ( $.is.string( $.args.proxy ) ) ?
+          $.args.proxy :
           process.env.PROXY_SERVER
       ),
       auth   : (
-        ( args.proxyAuth && is.string( args.proxyAuth ) ) ?
-          args.proxyAuth :
+        ( $.args.proxyAuth && $.is.string( $.args.proxyAuth ) ) ?
+          $.args.proxyAuth :
           process.env.PROXY_AUTH
       )
     }
@@ -39,14 +33,14 @@ module.exports = (function() {
   //--- @end: config.phantomjs
 
   config.server = {
-    port: (
-      ( args.port && is.string.number( args.port ) ) ?
-        args.port :
+    port        : (
+      ( $.args.port && $.is.string.number( $.args.port ) ) ?
+        $.args.port :
         9000
     ),
-    public_dir: path.resolve( config.rootPath, 'public' ),
-    index_html: path.resolve( config.rootPath, 'public', 'index.html' ),
-    screenshots: path.resolve( config.rootPath, 'files' )
+    public_dir  : $.path.resolve( $.rootPath, 'server', 'public' ),
+    index_html  : $.path.resolve( $.rootPath, 'server', 'public', 'index.html' ),
+    screenshots : $.path.resolve( $.rootPath, 'server', 'files' )
   };
 
   return config;

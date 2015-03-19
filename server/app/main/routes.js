@@ -1,10 +1,10 @@
-module.exports = function( server, config ) {
+module.exports = function( server ) {
 
   server.route({
     method: 'GET',
     path:'/',
     handler: function (request, reply) {
-     reply.file( config.server.index_html );
+     reply.file( $srv.config.server.index_html );
     }
   });
 
@@ -13,7 +13,7 @@ module.exports = function( server, config ) {
     path: '/{param*}',
     handler: {
       directory: {
-        path: config.server.public_dir,
+        path: $srv.config.server.public_dir,
         listing: true
       }
     }

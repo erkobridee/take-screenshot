@@ -1,5 +1,8 @@
-var Hapi = require('hapi'),
-    config = require('./config');
+var Hapi = require('hapi');
+
+//---
+
+global.$srv = require('./helpers/$');
 
 //---
 
@@ -7,18 +10,13 @@ var Hapi = require('hapi'),
 var server = new Hapi.Server();
 
 server.connection({
-  port: config.server.port
+  port: $srv.config.server.port
 });
 
 //------------------------------------------------------------------------------
 
-var options = {
-  server: server,
-  config: config
-};
-
 // load application
-require('./app')(options);
+require('./app')( server );
 
 //------------------------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-module.exports = function( server, config ) {
+module.exports = function( server ) {
 
   var ctrls = require('./controllers'),
       schema = require('./schema');

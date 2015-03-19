@@ -1,5 +1,5 @@
-module.exports = function( options ) {
+module.exports = function( server ) {
 
-  require('./routes')( options.server, options.config );
+  require('./routes')( server );
 
 };
