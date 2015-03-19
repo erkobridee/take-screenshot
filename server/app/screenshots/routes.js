@@ -1,20 +1,24 @@
 module.exports = function( server, config ) {
 
+  var ctrls = require('./controllers'),
+      schema = require('./schema');
+
   var basePath = '/screenshots';
 
   server.route({
     method: 'GET',
-    path: basePath,
-    handler: function (request, reply) {
-     reply('screenshots');
-    }
+    path: basePath + '/{id?}',
+    handler: ctrls.get
   });
 
   server.route({
     method: 'POST',
     path: basePath,
-    handler: function (request, reply) {
-     reply('return screenshot id');
+    handler: ctrls.post,
+    config: {
+      validate: {
+        payload: schema
+      }
     }
   });
 
