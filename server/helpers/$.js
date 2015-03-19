@@ -21,5 +21,6 @@ $.config = $.rootRequire('server/config');
 
 $.pathPrefix = require('./pathPrefix');
 $.shortHash = require('./shortHash');
+$.phantomjsScreenshot = require('./phantomjsScreenshot');
 
 //---

@@ -1,20 +1,62 @@
+/*
+  generate fake images
+  http://fakeimg.pl/
+*/
+
 module.exports = (function() {
+
+  var fs = require('fs');
 
   var services = {
     take: take, // call phantomjs
-    get: get, // mount file path
-    check: check, // file exists
+    get: get, // mount file path and check if exists
     sample: sample // post object
   };
 
-  // TODO: define services
   //---
 
-  function take( screenshotFor ) {}
+  function take( screenshotFor, cb ) {
+    get(screenshotFor.id, function( fileinfo ) {
+      if( !fileinfo.exists ) {
 
-  function check( id ) {}
+        $srv.phantomjsScreenshot(screenshotFor, function( result ) {
+          return cb( result );
+        });
 
-  function get( id ) {}
+      } else {
+        return cb( 'screenshot already exists' );
+      }
+    });
+  }
+
+  function get( id, cb ) {
+    var filepath = mountFilePath( id ),
+        fileinfo = {
+          path: filepath,
+          exists: false
+        };
+
+    checkFileExists(filepath, function( flag ) {
+      fileinfo.exists = flag;
+      return cb( fileinfo );
+    });
+  }
+
+  //---
+  function mountFilePath( id ) {
+    return $srv.path.join( $srv.config.server.screenshots, id + '.png' );
+  }
+
+  function checkFileExists( filepath, cb ) {
+    fs.stat(filepath, function(err, stats) {
+      if( err ) {
+        return cb( false );
+      } else if( stats.isFile() ) {
+        return cb( true );
+      }
+      return cb( false );
+    });
+  }
 
   function sample() {
     return {

@@ -7,15 +7,24 @@ module.exports = (function() {
     post: post
   };
 
-  // TODO: remove?
-  function print( value ) { console.log( JSON.stringify( value, null, 2 ) ); };
+  //---
 
   function get( request, reply ) {
 
     var id = request.params.id;
     if( id ) {
 
-      reply( 'TODO: define get by id' );
+      services.get( id, function( fileinfo ) {
+        if( fileinfo.exists ) {
+          reply.file( fileinfo.path );
+        } else {
+          var msgObj = {
+            statusCode: 404,
+            error: 'screenshot ' + id + ' not found'
+          };
+          reply( msgObj ).code(404);
+        }
+      });
 
     } else {
 
@@ -26,9 +35,6 @@ module.exports = (function() {
   }
 
   function post( request, reply ) {
-
-    // TODO: remove
-    print( request.payload );
 
     //--- @begin: review received object
     var takeScreenshot = {
@@ -46,19 +52,19 @@ module.exports = (function() {
     if( request.payload.delay ) takeScreenshot.delay = request.payload.delay;
     //--- @end: review received object
 
+    services.take(takeScreenshot, function( result ) {
+      console.log( result );
+    })
 
     var output = {
-      hashObj: hashObj,
-      takeScreenshotConfig: takeScreenshot,
-      msg: 'TODO: define post screenshot service'
+      id: takeScreenshot.id
     };
 
-    // TODO: check if screenshot exists, if not generate
-
+    // TODO: review
+    console.log( 'send response: ', output );
     reply( output );
 
   }
-
 
   //---
   return service;
