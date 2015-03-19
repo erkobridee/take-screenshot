@@ -14,6 +14,7 @@ module.exports = (function() {
 
   config.rootPath = path.dirname(require.main.filename);
 
+  //---
   config.phantomjs = {
     root: path.resolve( config.rootPath, '..', 'phantomjs' ),
     screenshot: path.resolve( config.rootPath, '..', 'phantomjs', 'screenshot.js' )
@@ -21,7 +22,7 @@ module.exports = (function() {
 
   if( config.flags.proxy ) {
 
-    var proxy = {
+    config.phantomjs.proxy = {
       server : (
         ( is.string( args.proxy ) ) ?
           args.proxy :
@@ -34,9 +35,8 @@ module.exports = (function() {
       )
     }
 
-    //---
-    config.phantomjs.proxy = proxy;
   }
+  //--- @end: config.phantomjs
 
   config.server = {
     port: (
