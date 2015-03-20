@@ -11,7 +11,10 @@ module.exports = (function() {
   //---
   config.phantomjs = {
     root       : $.path.resolve( $.rootPath, 'phantomjs' ),
-    screenshot : $.path.resolve( $.rootPath, 'phantomjs', 'screenshot.js' )
+    screenshot : $.path.resolve( $.rootPath, 'phantomjs', 'screenshot.js' ),
+    ss404      : $.path.resolve(
+      $.rootPath, 'server', 'public', 'assets', 'images', 'ss404.png'
+    )
   };
 
   if( config.flags.proxy ) {

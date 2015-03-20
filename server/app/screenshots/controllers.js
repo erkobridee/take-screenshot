@@ -18,11 +18,9 @@ module.exports = (function() {
         if( fileinfo.exists ) {
           reply.file( fileinfo.path );
         } else {
-          var msgObj = {
-            statusCode: 404,
-            error: 'screenshot ' + id + ' not found'
-          };
-          reply( msgObj ).code(404);
+          reply.file( $srv.config.phantomjs.ss404 )
+            .header('error', 'screenshot ' + id + ' not found')
+            .code(404);
         }
       });
 
@@ -60,8 +58,6 @@ module.exports = (function() {
       id: takeScreenshot.id
     };
 
-    // TODO: review
-    console.log( 'send response: ', output );
     reply( output );
 
   }
