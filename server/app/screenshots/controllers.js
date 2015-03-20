@@ -37,8 +37,7 @@ module.exports = (function() {
     //--- @begin: review received object
     var takeScreenshot = {
       url        : request.payload.url,
-      screenshot : '1024x768x0',
-      resize     : '250x200'
+      screenshot : '1024x768x0'
     };
 
     if( request.payload.screenshot ) takeScreenshot.screenshot = request.payload.screenshot;
