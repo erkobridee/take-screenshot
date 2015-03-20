@@ -9,14 +9,14 @@ module.exports = (function() {
 
   var services = {
     take: take, // call phantomjs
-    get: get, // mount file path and check if exists
+    get: $srv.phantomjsScreenshot.get, // mount file path and check if exists
     sample: sample // post object
   };
 
   //---
 
   function take( screenshotFor, cb ) {
-    get(screenshotFor.id, function( fileinfo ) {
+    $srv.phantomjsScreenshot.get(screenshotFor.id, function( fileinfo ) {
       if( !fileinfo.exists ) {
 
         $srv.phantomjsScreenshot(screenshotFor, function( result ) {
@@ -26,35 +26,6 @@ module.exports = (function() {
       } else {
         return cb( 'screenshot already exists' );
       }
-    });
-  }
-
-  function get( id, cb ) {
-    var filepath = mountFilePath( id ),
-        fileinfo = {
-          path: filepath,
-          exists: false
-        };
-
-    checkFileExists(filepath, function( flag ) {
-      fileinfo.exists = flag;
-      return cb( fileinfo );
-    });
-  }
-
-  //---
-  function mountFilePath( id ) {
-    return $srv.path.join( $srv.config.server.screenshots, id + '.png' );
-  }
-
-  function checkFileExists( filepath, cb ) {
-    fs.stat(filepath, function(err, stats) {
-      if( err ) {
-        return cb( false );
-      } else if( stats.isFile() ) {
-        return cb( true );
-      }
-      return cb( false );
     });
   }
 
