@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs    = require('fs'),
+    shell = require('shelljs');
 
 //------------------------------------------------------------------------------
 // @begin: public
@@ -79,10 +80,20 @@ function mountCommandLine( screenshotFor ) {
 
 function execCommandLine( cmdline, cb ) {
 
-  console.log( '\nTODO: define command line execution\n' );
-  console.log( cmdline );
+  // console.log( '\nTODO: define command line execution\n' );
+  // console.log( cmdline );
 
-  return cb( 'done' );
+  shell.exec( cmdline, {silent:true}, function( code, output ) {
+    if( code !== 0 ) {
+      var msg = 'Error: PhantomJS screenshot service failed';
+      msg += '\n\n';
+      msg += 'Command:\n';
+      msg += cmdline;
+      return cb( msg );
+    } else {
+      return cb( 'PhantomJS screenshot service done' );
+    }
+  });
 }
 
 // @end: private
