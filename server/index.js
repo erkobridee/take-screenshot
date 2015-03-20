@@ -22,7 +22,7 @@ require('./app')( server );
 
 // Start the server
 server.start(function () {
-  console.log('Server running at port:', server.info.port);
+  console.log('Server running at:', $srv.localip + ':' + server.info.port);
 });
 
 //------------------------------------------------------------------------------

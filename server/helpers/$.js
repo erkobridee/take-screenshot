@@ -14,13 +14,14 @@ $.rootRequire = function( name ) {
   return require( $.path.join( $.rootPath, name ) );
 };
 
-$.is = $.rootRequire('phantomjs/helpers/is')
+$.is     = $.rootRequire('phantomjs/helpers/is')
 $.config = $.rootRequire('server/config');
 
 //---
 
-$.pathPrefix = require('./pathPrefix');
-$.shortHash = require('./shortHash');
+$.localip             = require('./localip');
+$.pathPrefix          = require('./pathPrefix');
+$.shortHash           = require('./shortHash');
 $.phantomjsScreenshot = require('./phantomjsScreenshot');
 
 //---
