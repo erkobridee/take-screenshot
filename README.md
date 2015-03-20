@@ -37,6 +37,13 @@ $ npm install
 $ node server
 ```
 
+* server port (default: 9000)
+
+```bash
+$ node server --port=1337
+```
+
+
 #### Proxy Support
 
 ```bash
