@@ -10,7 +10,10 @@ global.$srv = require('./helpers/$');
 var server = new Hapi.Server();
 
 server.connection({
-  port: $srv.config.server.port
+  port: $srv.config.server.port,
+  routes: {
+    cors: true
+  }
 });
 
 //------------------------------------------------------------------------------
