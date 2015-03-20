@@ -1,4 +1,4 @@
-# PhantomJS - ScreenShot
+# take-screenshot : PhantomJS - ScreenShot
 
 * [PhantomJS Screen Capture](http://phantomjs.org/screen-capture.html)
 
