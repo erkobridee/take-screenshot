@@ -83,9 +83,6 @@ function mountCommandLine( screenshotFor ) {
 
 function execCommandLine( options, cb ) {
 
-  // console.log( '\nTODO: define command line execution\n' );
-  // console.log( cmdline );
-
   shell.exec( options.cmdline, {silent:true}, function( code, output ) {
     if( code !== 0 ) {
       var msg = 'Error: PhantomJS screenshot service failed';
