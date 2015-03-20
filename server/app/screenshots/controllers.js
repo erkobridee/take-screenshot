@@ -2,7 +2,7 @@ module.exports = (function() {
 
   var services = require('./services');
 
-  var service = {
+  var controllers = {
     get: get,
     post: post
   };
@@ -62,6 +62,6 @@ module.exports = (function() {
   }
 
   //---
-  return service;
+  return controllers;
 
 })();
