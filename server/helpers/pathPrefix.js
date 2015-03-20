@@ -9,7 +9,7 @@
 module.exports = function( prefix, server, cb ) {
 
   var plugin = function( server, options, next ) {
-    cb( server, next )
+    return cb( server, next );
   };
 
   plugin.attributes = {

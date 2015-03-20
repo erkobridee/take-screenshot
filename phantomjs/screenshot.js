@@ -120,7 +120,7 @@ function takeScreenShot() {
   function renderImageBase64( cb ) {
     var base64 = page.renderBase64('PNG');
     if(DEBUG) console.log('screenshot base64 png generated');
-    cb( updateImageBase64Str( base64 ) )
+    return cb( updateImageBase64Str( base64 ) );
   }
 
 }
@@ -189,7 +189,9 @@ function resizeImage( imageBase64 ) {
 
 function setWhiteBbColor( page ) {
   page.evaluate(function() {
-    return document.body.bgColor = 'white';
+    var bgColor = 'white';
+    document.body.bgColor = bgColor;
+    return bgColor;
   });
 }
 

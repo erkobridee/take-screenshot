@@ -1,5 +1,7 @@
 // https://github.com/ariya/phantomjs/blob/master/examples/waitfor.js
 
+/*jshint evil:true */
+
 var waitForDelay = 50; // ms
 
 /**
@@ -30,12 +32,15 @@ function waitFor(testFx, onReady, timeOutMillis) {
         } else {
           // Condition fulfilled (timeout and/or condition is 'true')
           if(DEBUG) console.log("'waitFor()' finished in " + (new Date().getTime() - start) + "ms.");
-          typeof(onReady) === "string" ? eval(onReady) : onReady(); //< Do what it's supposed to do once the condition is fulfilled
+          if(typeof(onReady) === "string")
+           eval(onReady);
+         else
+           onReady(); //< Do what it's supposed to do once the condition is fulfilled
           clearInterval(interval); //< Stop this interval
         }
         }
       }, waitForDelay); //< repeat check every waitForDelay
-};
+}
 
 //---
 module.exports = waitFor;

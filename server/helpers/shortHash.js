@@ -8,7 +8,7 @@ var hashids = new Hashids( salt );
 
 //==============================================================================
 
-function isString( value ) { return typeof value === 'string'; };
+function isString( value ) { return typeof value === 'string'; }
 
 function shortHash( value ) {
   if( !isString( value ) ) value = JSON.stringify( value );
@@ -32,7 +32,7 @@ function shortHash( value ) {
     input: value,
     hashSum: hashSum,
     hash: hashids.encode( hashSum )
-  }
+  };
 }
 
 //==============================================================================

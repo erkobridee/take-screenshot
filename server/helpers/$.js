@@ -14,7 +14,7 @@ $.rootRequire = function( name ) {
   return require( $.path.join( $.rootPath, name ) );
 };
 
-$.is     = $.rootRequire('phantomjs/helpers/is')
+$.is     = $.rootRequire('phantomjs/helpers/is');
 $.config = $.rootRequire('server/config');
 
 //---

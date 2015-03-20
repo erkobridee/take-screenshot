@@ -51,7 +51,7 @@ module.exports = (function() {
 
     services.take(takeScreenshot, function( result ) {
       console.log( result );
-    })
+    });
 
     var output = {
       id: takeScreenshot.id

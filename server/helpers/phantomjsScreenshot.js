@@ -46,7 +46,7 @@ service.checkFileExists = function( filepath, cb ) {
     }
     return cb( false );
   });
-}
+};
 
 // @begin: public
 //------------------------------------------------------------------------------
@@ -84,15 +84,16 @@ function mountCommandLine( screenshotFor ) {
 function execCommandLine( options, cb ) {
 
   shell.exec( options.cmdline, {silent:true}, function( code, output ) {
+    var msg;
     if( code !== 0 ) {
-      var msg = 'Error: PhantomJS screenshot service failed';
+      msg = 'Error: PhantomJS screenshot service failed';
       msg += '\n\n';
       msg += 'Command:\n';
       msg += cmdline;
       return cb( msg );
     } else {
       var errorRegexp = /error/;
-      var msg = 'PhantomJS screenshot service - ';
+      msg = 'PhantomJS screenshot service - ';
 
       var outputLines = output.split('\n');
       if( errorRegexp.test( outputLines[0] ) ) {

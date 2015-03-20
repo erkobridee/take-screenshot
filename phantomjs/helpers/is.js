@@ -14,7 +14,7 @@ module.exports = (function() {
 
   //---
 
-  is.array = Array.isArray
+  is.array = Array.isArray;
 
   //---
 

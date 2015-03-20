@@ -30,7 +30,7 @@ module.exports = (function() {
           $.args.proxyAuth :
           process.env.PROXY_AUTH
       )
-    }
+    };
 
   }
   //--- @end: config.phantomjs
