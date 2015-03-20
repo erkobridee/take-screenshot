@@ -22,6 +22,8 @@ $ npm install
 
 * Must have [Gulp.js](http://gulpjs.com/) node package installed globally.  `sudo npm install -g gulp`
 
+  > dev tools
+
 * Must have [PhantomJS](http://phantomjs.org/)
 
   * custom build to work with web fonts
