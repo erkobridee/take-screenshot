@@ -75,15 +75,18 @@ function mountCommandLine( screenshotFor ) {
   if( screenshotFor.delay )
     cmdline += ' --delay ' + screenshotFor.delay;
 
-  return cmdline;
+  return {
+    id: screenshotFor.id,
+    cmdline: cmdline
+  };
 }
 
-function execCommandLine( cmdline, cb ) {
+function execCommandLine( options, cb ) {
 
   // console.log( '\nTODO: define command line execution\n' );
   // console.log( cmdline );
 
-  shell.exec( cmdline, {silent:true}, function( code, output ) {
+  shell.exec( options.cmdline, {silent:true}, function( code, output ) {
     if( code !== 0 ) {
       var msg = 'Error: PhantomJS screenshot service failed';
       msg += '\n\n';
@@ -91,7 +94,19 @@ function execCommandLine( cmdline, cb ) {
       msg += cmdline;
       return cb( msg );
     } else {
-      return cb( 'PhantomJS screenshot service done' );
+      var errorRegexp = /error/;
+      var msg = 'PhantomJS screenshot service - ';
+
+      var outputLines = output.split('\n');
+      if( errorRegexp.test( outputLines[0] ) ) {
+        msg += 'fail';
+      } else {
+        msg += 'success';
+      }
+      msg += ' : ' + options.id;
+      msg += '\n' + outputLines[0];
+
+      return cb( msg );
     }
   });
 }

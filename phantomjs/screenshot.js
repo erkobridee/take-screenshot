@@ -120,7 +120,6 @@ function takeScreenShot() {
   function renderImageBase64( cb ) {
     var base64 = page.renderBase64('PNG');
     if(DEBUG) console.log('screenshot base64 png generated');
-    // page.close();
     cb( updateImageBase64Str( base64 ) )
   }
 
@@ -181,7 +180,6 @@ function resizeImage( imageBase64 ) {
     } else {
       page.render( options.dest );
     }
-    // page.close();
     finish();
   }
 
@@ -267,17 +265,15 @@ function start() {
 }
 
 function finish() {
-  if( DEBUG ) {
-    var msg = 'screenshot taked';
-    msg += ' (' + options.screenshotDimensions + ')';
-    if( flags.resize ) {
-      msg += ' and resized';
-      msg += ' (' + options.resizeDimensions + ')';
-    }
-    msg += ' in';
-    msg += ' ' + (new Date().getTime() - startTakeResize) + ' ms.';
-    console.log( msg );
+  var msg = 'screenshot taked';
+  msg += ' (' + options.screenshotDimensions + ')';
+  if( flags.resize ) {
+    msg += ' and resized';
+    msg += ' (' + options.resizeDimensions + ')';
   }
+  msg += ' in';
+  msg += ' ' + (new Date().getTime() - startTakeResize) + ' ms.';
+  console.log( msg );
   phantom.exit();
 }
 
