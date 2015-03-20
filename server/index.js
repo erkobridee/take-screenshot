@@ -18,6 +18,9 @@ server.connection({
 
 //------------------------------------------------------------------------------
 
+// API documentation generator
+server.register({ register: require('lout') }, function(err) {});
+
 // load application
 require('./app')( server );
 

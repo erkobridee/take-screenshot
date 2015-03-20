@@ -40,6 +40,8 @@ $ node server --proxy=ip_host:port --proxy-auth=username:password
 
 * [[GitHub] hapijs / joi](https://github.com/hapijs/joi) - Object schema validation
 
+* [[GitHub] hapijs / lout](https://github.com/hapijs/lout) - API documentation generator
+
 * [[GitHub] ivanakimov / hashids.node.js](https://github.com/ivanakimov/hashids.node.js) - A small Node.js class to generate YouTube-like hashids from one or many numbers. Use hashids when you do not want to expose your database ids to the user
 
 * [[GitHub] arturadib / shelljs](https://github.com/arturadib/shelljs) - Portable Unix shell commands for Node.js
