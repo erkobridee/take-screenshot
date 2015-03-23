@@ -18,8 +18,10 @@ module.exports = (function() {
         if( fileinfo.exists ) {
           reply.file( fileinfo.path );
         } else {
-          reply.file( $srv.config.phantomjs.ss404 )
-            .header('error', 'screenshot ' + id + ' not found')
+          var msg = 'screenshot ' + id + ' not found';
+          reply( msg )
+            // .file( $srv.config.phantomjs.ss404 )
+            .header('error', msg)
             .code(404);
         }
       });
