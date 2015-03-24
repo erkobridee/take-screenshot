@@ -24,7 +24,7 @@ module.exports = (function() {
         });
 
       } else {
-        return cb( 'screenshot already exists' );
+        return cb( 'screenshot ' + screenshotFor.id + ' already exists' );
       }
     });
   }
