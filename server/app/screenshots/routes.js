@@ -13,7 +13,7 @@ module.exports = function( server ) {
 
   server.route({
     method: 'POST',
-    path: basePath,
+    path: basePath + '/{v?}', // workaround...
     handler: ctrls.post,
     config: {
       validate: {
